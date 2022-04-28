@@ -2,23 +2,18 @@
   <div class="component row border border-dark d-flex">
     <div class="col-8">
       <div>
-        <img src="" alt="creator picture" />
-        <h6>creator name</h6>
+        <img class="avatar" :src="blog.creator.picture" alt="creator picture" />
+        <h6>{{ blog.creator.name }}</h6>
       </div>
       <div>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. A dolorem
-          ullam autem delectus eum minus porro deserunt voluptates, temporibus
-          laudantium corporis illo omnis itaque laborum expedita, optio
-          consequatur doloribus! Explicabo animi eaque culpa repudiandae
-          repellendus ratione, exercitationem minima tempore aut excepturi totam
-          alias pariatur vero hic, quod eum placeat. Repellat.
+          {{ blog.body }}
         </p>
       </div>
-      <div>post date</div>
+      <div>{{ blog.creator.createdAt }}</div>
     </div>
     <div class="col-4">
-      <img src="" alt="blog picture" />
+      <img class="coverImg" :src="blog.creator.coverImg" alt="blog picture" />
     </div>
   </div>
 </template>
@@ -26,6 +21,11 @@
 
 <script>
 export default {
+  props: {
+    blog: {
+      type: Object,
+      required: true}
+  },
   setup(){
     return {}
   }
@@ -34,4 +34,16 @@ export default {
 
 
 <style lang="scss" scoped>
+.avatar {
+  height: 100px;
+  max-width: 100px;
+  object-fit: cover;
+}
+
+.coverImg {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
 </style>
+

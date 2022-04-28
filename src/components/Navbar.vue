@@ -35,29 +35,42 @@
           </router-link>
         </li>
       </ul>
-      <button class="btn btn-success rounded me-4" @click="createBlog()">
+      <button
+        class="btn btn-success rounded me-4"
+        data-bs-toggle="modal"
+        data-bs-target="#mod"
+        @click="createBlog()"
+      >
         Create Post
       </button>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
   </nav>
+  <Modal id="mod">
+    <template #title> Create </template>
+    <template> <BlogForm /></template>
+  </Modal>
 </template>
 
 <script>
 import { onMounted } from '@vue/runtime-core';
-import { blogsServices } from '../services/BlogsService.js'
+import { logger } from '../utils/Logger';
+import Pop from '../utils/Pop';
+import { blogsService } from '../services/BlogsService';
 export default {
   setup() {
-    onMounted(async()=> {
-try {
- await  blogsServices.getBlogs()
-} catch (error) {
-  logger.error(error)
-  Pop.toast(error.message, 'error')
-}
-    })
-    return {};
+    
+    return {
+      async createBlog(){
+        try {
+         await blogsService.createBlog({})  
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      }
+    };
   },
 };
 </script>
