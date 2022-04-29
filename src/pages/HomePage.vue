@@ -1,10 +1,5 @@
 <template>
   <div class="home container">
-    <div class="row">
-      <div class="col-12">
-        <h1>BLOGGER</h1>
-      </div>
-    </div>
     <BlogPost v-for="b in blogs" :key="b.id" :blog="b" />
   </div>
 </template>

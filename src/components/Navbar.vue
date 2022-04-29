@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-warning px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+      <div class="d-flex flex-column align-items-center text-dark">
+        <h1><i class="mdi mdi-email"></i>Blogger</h1>
       </div>
     </router-link>
     <button
@@ -21,22 +21,14 @@
         <li>
           <router-link
             :to="{ name: 'About' }"
-            class="btn text-success lighten-30 selectable text-uppercase"
+            class="text-warning text-uppercase"
           >
             About
           </router-link>
         </li>
-        <li>
-          <router-link
-            :to="{ name: 'Profile' }"
-            class="btn text-success lighten-30 selectable text-uppercase"
-          >
-            Profile
-          </router-link>
-        </li>
       </ul>
       <button
-        class="btn btn-success rounded me-4"
+        class="btn btn-info rounded me-4"
         data-bs-toggle="modal"
         data-bs-target="#mod"
         @click="createBlog()"
@@ -49,7 +41,7 @@
   </nav>
   <Modal id="mod">
     <template #title> Create </template>
-    <template> <BlogForm /></template>
+    <template #body> <BlogForm /></template>
   </Modal>
 </template>
 
@@ -61,16 +53,7 @@ import { blogsService } from '../services/BlogsService';
 export default {
   setup() {
     
-    return {
-      async createBlog(){
-        try {
-         await blogsService.createBlog({})  
-        } catch (error) {
-          logger.error(error)
-          Pop.toast(error.message, 'error')
-        }
-      }
-    };
+    return {};
   },
 };
 </script>
